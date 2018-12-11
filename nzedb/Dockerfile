@@ -84,12 +84,12 @@ RUN mkdir -p /var/log/nginx && \
     touch /var/log/nginx/nginx-error.log
 
 # Clone Newzflash and set directory permissions
-ENV Newzflash_VERSION "v0.8.7.0"
+ENV Newzflash_VERSION "1.0"
 RUN mkdir -p /var/www && \
   cd /var/www && \
   git clone https://github.com/DemetryRomanowski/Newzflash.git && \
   cd /var/www/Newzflash && \
-  git checkout --quiet --force $Newzflash_VERSION && \
+  git checkout --quiet --force Newzflash && \
   composer install && \
   chmod -R 777 /var/www/Newzflash/ && \
   # nuke all git repos' .git dir except for Newzflash's .git dir to save space
