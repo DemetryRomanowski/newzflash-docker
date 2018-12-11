@@ -1,8 +1,5 @@
-[![Build Status](https://travis-ci.org/slydetector/simply-nzedb.svg?branch=master)](https://travis-ci.org/slydetector/simply-nzedb)
-[![](https://img.shields.io/docker/pulls/slydetector/simply-nzedb.svg)](https://hub.docker.com/r/slydetector/simply-nzedb 'DockerHub')
-[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/simply-nzedb/Lobby)
 
-# Simply nZEDb
+# Newzflash Docker
 
 Set up your own nZEDb usenet indexer in no time at all. 
 This is a docker based installation based on the super-slim alpine linux distro.
@@ -21,8 +18,8 @@ This is a docker based installation based on the super-slim alpine linux distro.
 **ProTip:** Setup docker to run [without having to use sudo](http://askubuntu.com/questions/477551/how-can-i-use-docker-without-sudo) unless you like typing in your password again and again.
 
 ```sh
-$ git clone https://github.com/slydetector/simply-nzedb.git nzedb
-$ cd nzedb
+$ git clone 
+$ cd Newzflash
 
 # Create a python virtualenv for docker-compose
 $ make venv
