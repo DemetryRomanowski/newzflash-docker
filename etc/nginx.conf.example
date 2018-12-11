@@ -21,10 +21,10 @@ http {
   
   server {
     server_name   changeme_server_name localhost;  
-    #listen       [::]:80; #uncomment for IPv6 support
-    listen       8800;
+    listen       [::]:80; #uncomment for IPv6 support
+    listen       80;
     
-    root /var/www/nZEDb/www/;
+    root /var/www/Newzflash/www/;
     index  index.php index.html index.htm;
     
     disable_symlinks off;
@@ -40,8 +40,8 @@ http {
     }
 
     location ^~ /covers/ {
-        # This is where the nZEDb covers folder should be in.
-        root /var/www/nZEDb/resources;
+        # This is where the Newzflash covers folder should be in.
+        root /var/www/Newzflash/resources;
     }
 
     location @rewrites {

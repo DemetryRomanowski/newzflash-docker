@@ -2,6 +2,6 @@
 rm web_setup.log
 set -e
 set +o pipefail
-source etc/simply_nzedb.conf
+source etc/newzflash.conf
 source bin/nzedb_lib
 web_setup

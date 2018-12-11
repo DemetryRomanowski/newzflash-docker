@@ -2,11 +2,11 @@
 set -e
 
 # Upgrade db with latest patches if necessary
-cd /var/www/nZEDb
+cd /var/www/Newzflash
 ./zed update db
 
 # Start up tmux which runs pretty much everything
-cd /var/www/nZEDb/misc/update/nix/tmux
+cd /var/www/Newzflash/misc/update/nix/tmux
 php start.php
 
 # Block indefinitely

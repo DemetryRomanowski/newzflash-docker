@@ -33,7 +33,7 @@ backup:
 	@bin/backup_db
 
 build:
-	@bin/build_nzedb
+	@bin/build_newzflash
 
 logs:
 	@$(COMPOSE) logs
@@ -51,16 +51,16 @@ restore:
 	@bin/restore_db
 
 shell:
-	@bin/nzedb_shell
+	@bin/newzflash_shell
 
 start:
-	@bin/start_nzedb
+	@bin/start_newzflash
 
 status:
 	@$(COMPOSE) ps
 
 stop:
-	@bin/stop_nzedb
+	@bin/stop_newzflash
 
 test:
 	@bin/acceptance_test

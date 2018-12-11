@@ -6,10 +6,10 @@ services:
       file: common.yml
       service: database
 
-  nzedb:
+  newzflash:
     extends:
       file: common.yml
-      service: nzedb
+      service: newzflash
     links:
       - database
       - redis

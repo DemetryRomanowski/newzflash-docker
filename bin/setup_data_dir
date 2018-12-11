@@ -3,7 +3,7 @@ echo "Creating data directory..."
 mkdir -p data/configuration
 
 # Read in all custom settings as env vars
-source etc/simply_nzedb.conf
+source etc/newzflash.conf
 
 cp etc/settings.php.example data/configuration/settings.php
 
