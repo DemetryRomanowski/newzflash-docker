@@ -1,5 +1,5 @@
 FROM alpine:3.7
-MAINTAINER theslydetector@gmail.com
+MAINTAINER demetryromanowski@gmail.com
 
 # Configure Timezone
 ENV TIMEZONE "America/Chicago"
@@ -83,21 +83,21 @@ RUN mkdir -p /var/log/nginx && \
     chmod 777 /tmp && \
     touch /var/log/nginx/nginx-error.log
 
-# Clone nZEDb and set directory permissions
-ENV NZEDB_VERSION "v0.8.7.0"
+# Clone Newzflash and set directory permissions
+ENV Newzflash_VERSION "v0.8.7.0"
 RUN mkdir -p /var/www && \
   cd /var/www && \
-  git clone https://github.com/nZEDb/nZEDb.git && \
-  cd /var/www/nZEDb && \
-  git checkout --quiet --force $NZEDB_VERSION && \
+  git clone https://github.com/DemetryRomanowski/Newzflash.git && \
+  cd /var/www/Newzflash && \
+  git checkout --quiet --force $Newzflash_VERSION && \
   composer install && \
-  chmod -R 777 /var/www/nZEDb/ && \
-  # nuke all git repos' .git dir except for nzedb's .git dir to save space
+  chmod -R 777 /var/www/Newzflash/ && \
+  # nuke all git repos' .git dir except for Newzflash's .git dir to save space
   find . -name ".git" -type d | grep -v "\.\/\.git" | xargs rm -rf && \
   # nuke ~350MB of composer cache
   composer clear-cache
 
-# Build tmux 2.0 since tmux 2.2 has issues: https://github.com/nZEDb/nZEDb/issues/2182 
+# Build tmux 2.0 since tmux 2.2 has issues: https://github.com/Newzflash/Newzflash/issues/2182 
 ENV TMUX_VERSION 2.0
 RUN apk --update add gcc g++ ncurses-dev libevent-dev bsd-compat-headers && \
   mkdir -p /tmp/tmux && \
@@ -152,7 +152,7 @@ RUN apk --update add gcc autoconf automake g++ python-dev openssl-dev libffi-dev
   apk add libgomp
 
 # Create dir for importing nzbs
-RUN mkdir -p /var/www/nZEDb/resources/import
+RUN mkdir -p /var/www/Newzflash/resources/import
 
 # Switch out php executable to instrument invocations
 RUN mv /usr/bin/php /usr/bin/php.real
@@ -164,17 +164,18 @@ RUN mv /bin/gzip /bin/gzip.real && \
 
 # iconv has issues in musl which affects NFO conversion to include
 # cool ascii chars. Remove the problematic parts - TRANSLIT and IGNORE
-# See https://github.com/slydetector/simply-nzedb/issues/31
-RUN sed -i "s|UTF-8//IGNORE//TRANSLIT|UTF-8|g" /var/www/nZEDb/nzedb/utility/Text.php
+# See https://github.com/slydetector/simply-Newzflash/issues/31
+RUN sed -i "s|UTF-8//IGNORE//TRANSLIT|UTF-8|g" /var/www/Newzflash/Newzflash/utility/Text.php
 
-LABEL nzedb=$NZEDB_VERSION \
-  maintainer=theslydetector@gmail.com \
-  url=https://github.com/slydetector/simply-nzedb
+LABEL Newzflash=$Newzflash_VERSION \
+      maintainer=demetryromanowski@gmail.com \
+      url=https://github.com/DemetryRomanowski/Newzflash
 
-RUN mkdir -p /var/www/nZEDb/resources/tmp && chmod 777 /var/www/nZEDb/resources/tmp
+RUN mkdir -p /var/www/Newzflash/resources/tmp && chmod 777 /var/www/Newzflash/resources/tmp
 
 ENV TERM tmux
-EXPOSE 8800
+EXPOSE 80
+EXPOSE 443
 ADD s6 /etc/s6
 CMD ["/bin/s6-svscan","/etc/s6"]
-WORKDIR /var/www/nZEDb/misc/update
+WORKDIR /var/www/Newzflash/misc/update

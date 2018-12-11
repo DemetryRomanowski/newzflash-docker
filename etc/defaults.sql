@@ -53,3 +53,8 @@ update tmux set value=4 where setting="backfill";
 # 2 = PreDB
 # 3 = All
 update tmux set value=3 where setting="dehash";
+
+ALTER TABLE users ADD COLUMN subscription_id VARCHAR(100) AFTER id;
+
+INSERT INTO settings(section, subsection, name, value, hint, setting) VALUES('site', 'stripe', 'stripesecretkey', '', 'Site secret key', 'stripesecretkey');
+INSERT INTO settings(section, subsection, name, value, hint, setting) VALUES('site', 'stripe', 'stripepublishablekey', '', 'Site publishable key', 'stripepublishablekey');
